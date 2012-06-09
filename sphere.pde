@@ -22,7 +22,7 @@ public class Sphere
       float kr= sqrt(max( r*r-(z-k)*(z-k) ,0));
       PVector v= new PVector( x,y,k );
 //      print(kr + "\n");
-      ellipse(display.getX(v),display.getY(v),kr,kr);
+      ellipse(display.getX(v),display.getY(v),kr*2,kr*2); // dimensions in width and height, not radius!
     }
   }
 }
