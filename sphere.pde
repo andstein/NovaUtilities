@@ -2,19 +2,25 @@
 public class Sphere
 {
   
-  PVector c;
-  float r;
+  Channel x,y,z,r;
   
-  Sphere(PVector center,float radius) {
-    this.c= center;
-    this.r= radius;
+  Sphere(Channel x,Channel y,Channel z,Channel r)  {
+    this.x= x;
+    this.y= y;
+    this.z= z;
+    this.r= r;
   }
   
   public void render() {
     ellipseMode(CENTER);
     for(int k=0; k<display.k; k++) {
-      float kr= sqrt(max( r*r-(c.z-k)*(c.z-k) ,0));
-      PVector v= new PVector( c.x,c.y,k );
+      float x= this.x.getValue();
+      float y= this.y.getValue();
+      float z= this.z.getValue();
+      float r= this.r.getValue();
+      
+      float kr= sqrt(max( r*r-(z-k)*(z-k) ,0));
+      PVector v= new PVector( x,y,k );
 //      print(kr + "\n");
       ellipse(display.getX(v),display.getY(v),kr,kr);
     }

@@ -4,7 +4,7 @@ Sphere s;
 
 void setup() {
   size(display.getSizeX(),display.getSizeY());
-  s= new Sphere(new PVector(10,20,5), 4);
+  s= new Sphere(new Channel(10),new Channel(20),new Channel(5), new SineChannel(4,10,bpmToW(6f)));
   frameRate(25);
 }
 
