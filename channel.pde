@@ -1,4 +1,8 @@
 
+float bpmToW(float bpm) {
+  return bpm/60*2*PI;
+}
+
 public class Channel {
   
   float value;
