@@ -36,14 +36,36 @@ public class SineChannel extends Channel {
 
 }
 
-public class OSCChannel extends Channel {
+public class LinChannel extends Channel {
+  
+  float start; // start value
+  float end; // end value
+  float duration; // transition duration
+  int startMillis; // start
+  
+  public LinChannel(float start,float end,float duration) {
+    super(0);
+    this.start= start;
+    this.end= end;
+    this.duration= duration;
+    this.startMillis = millis();
+  }
+  
+  float getValue() {
+    return start + (millis()-startMillis)/1000.0/duration*(end-start);
+  }
+
+}
+
+
+public class OscChannel extends Channel {
   
   String addrPattern;
   float val;
   int index;
   int maxv;
   
-  public OSCChannel(String addrPattern, int index, float initVal, int maxv) {
+  public OscChannel(String addrPattern, int index, float initVal, int maxv) {
     super(initVal);
     this.addrPattern = addrPattern;
     this.val = initVal;
@@ -57,7 +79,7 @@ public class OSCChannel extends Channel {
   
   void update(OscMessage m) {
      if( m.checkAddrPattern( addrPattern ) ) {
-       val = m.get(index).floatValue();
+      val = m.get(index).floatValue();
      }
   }
 
