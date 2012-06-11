@@ -1,8 +1,9 @@
-public Class Plane implements Actor {
+/*
+public Class Plane extends Actor {
   
   Channel m, n, h
   
   
   
   
-}
+}*/

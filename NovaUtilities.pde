@@ -43,7 +43,12 @@ void draw() {
   fill(255);
   
   for (int i=0; i<actors.size(); i++){
-    actors.get(i).render();
+    Actor a = actors.get(i);
+    a.render();
+    if (a.checkAge){
+      actors.remove(a);
+      a.destroy();
+    }
   }
    
   //display.renderLayers();

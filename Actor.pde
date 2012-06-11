@@ -1,8 +1,19 @@
 
-public interface Actor {
+public class Actor {
   // Any repeatedly drawn object
-  void render();
   
+  long deadTime;
+  
+  public Actor(float life){
+    deadTime = millis()*1000*life;
+  }
+  
+  void render(){
+  }
+  
+  boolean checkAge(){
+    return ( deadTime < millis() );
+  }
   
   /*
   possible to include:

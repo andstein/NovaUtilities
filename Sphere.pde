@@ -1,5 +1,5 @@
 
-public class Sphere implements Actor
+public class Sphere extends Actor
 {
   
   Channel x,y,z,r;
