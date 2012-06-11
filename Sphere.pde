@@ -4,7 +4,8 @@ public class Sphere extends Actor
   
   Channel x,y,z,r;
   
-  Sphere(Channel x,Channel y,Channel z,Channel r)  {
+  Sphere(float life, Channel x,Channel y,Channel z,Channel r)  {
+    super(life);
     this.x= x;
     this.y= y;
     this.z= z;

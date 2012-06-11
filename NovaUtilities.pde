@@ -14,17 +14,17 @@ void setup() {
   actors = new ArrayList<Actor>();
   
   size(display.getSizeX(),display.getSizeY());
-  actors.add( new Sphere(  ipad.newChannel("/spheres/r/xy",1,0.5,50),
+  actors.add( new Sphere( 0.0, ipad.newChannel("/spheres/r/xy",1,0.5,50),
                   ipad.newChannel("/spheres/r/xy",0,0.5,50), 
                   ipad.newChannel("/spheres/r/h",0,0.5,10),
                   ipad.newChannel("/spheres/r/opacity",0,0.5,10) ) );
                   
-  actors.add( new Sphere(  ipad.newChannel("/spheres/g/xy",1,0.5,50),
+  actors.add( new Sphere( 2.0, ipad.newChannel("/spheres/g/xy",1,0.5,50),
                   ipad.newChannel("/spheres/g/xy",0,0.5,50), 
                   ipad.newChannel("/spheres/g/h",0,0.5,10),
                   ipad.newChannel("/spheres/g/opacity",0,0.5,10) ) );
                   
-  actors.add( new Sphere(  ipad.newChannel("/spheres/b/xy",1,0.5,50),
+  actors.add( new Sphere( 2.0, ipad.newChannel("/spheres/b/xy",1,0.5,50),
                   ipad.newChannel("/spheres/b/xy",0,0.5,50), 
                   ipad.newChannel("/spheres/b/h",0,0.5,10),
                   ipad.newChannel("/spheres/b/opacity",0,0.5,10) ) );
@@ -45,9 +45,8 @@ void draw() {
   for (int i=0; i<actors.size(); i++){
     Actor a = actors.get(i);
     a.render();
-    if (a.checkAge){
-      actors.remove(a);
-      a.destroy();
+    if (a.checkAge() ){ // if Actor exceeded lifetime
+      actors.remove(a); // kill it!
     }
   }
    
@@ -58,6 +57,7 @@ public void newDrop(float x, float y) { // called whenever a message at /spheres
   
   actors.add(
     new Sphere(
+      2.0,
       new Channel(x*50),
       new Channel(y*50),
       new LinChannel(-5, 15, 2.0),
